@@ -10,6 +10,8 @@ class Penerima extends Model
     use HasFactory;
 
     protected $table = 'penerima';
+    protected $fillable = ['nama', 'nik', 'alamat', 'no_hp'];
+
 
     public function distribusi()
 {

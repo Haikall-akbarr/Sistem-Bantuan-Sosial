@@ -3,15 +3,10 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\DistribusiResource\Pages;
-use App\Filament\Resources\DistribusiResource\RelationManagers;
 use App\Models\Distribusi;
 use Filament\Forms;
-use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
-use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class DistribusiResource extends Resource
 {
@@ -19,7 +14,8 @@ class DistribusiResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-truck';
 
-    public static function form(Form $form): Form
+    // Form untuk tambah atau edit data
+    public static function form(Forms\Form $form): Forms\Form
     {
         return $form->schema([
             Forms\Components\Select::make('penerima_id')
@@ -40,7 +36,8 @@ class DistribusiResource extends Resource
         ]);
     }
 
-    public static function table(Table $table): Table
+    // Tabel untuk menampilkan data
+    public static function table(Tables\Table $table): Tables\Table
     {
         return $table
             ->columns([
@@ -49,10 +46,14 @@ class DistribusiResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('programBantuan.nama_program')
                     ->label('Program Bantuan'),
-                Tables\Columns\DateColumn::make('tanggal_distribusi')
-                    ->label('Tanggal Distribusi'),
+                Tables\Columns\TextColumn::make('tanggal_distribusi')
+                    ->label('Tanggal Distribusi')
+                    ->date('d/m/Y'),
                 Tables\Columns\TextColumn::make('status')
                     ->label('Status'),
+                Tables\Columns\TextColumn::make('created_at')
+                    ->label('Dibuat Pada')
+                    ->dateTime('d/m/Y H:i'),
             ])
             ->filters([
                 Tables\Filters\Filter::make('status')
@@ -77,6 +78,7 @@ class DistribusiResource extends Resource
             ]);
     }
 
+    // Konfigurasi halaman
     public static function getPages(): array
     {
         return [

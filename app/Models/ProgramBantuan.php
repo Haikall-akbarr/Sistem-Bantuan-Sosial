@@ -10,6 +10,7 @@ class ProgramBantuan extends Model
     use HasFactory;
 
     protected $table = 'program_bantuan';
+    protected $fillable = ['nama_program', 'deskripsi'];
 
     public function distribusi()
 {
