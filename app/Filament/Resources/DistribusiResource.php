@@ -14,6 +14,10 @@ class DistribusiResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-truck';
 
+    // Mengatasi pluralisasi otomatis
+    protected static ?string $pluralModelLabel = 'Distribusi';
+    protected static ?string $navigationLabel = 'Distribusi';
+
     // Form untuk tambah atau edit data
     public static function form(Forms\Form $form): Forms\Form
     {
@@ -82,7 +86,7 @@ class DistribusiResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListDistribusis::route('/'),
+            'index' => Pages\ListDistribusi::route('/'),
             'create' => Pages\CreateDistribusi::route('/create'),
             'edit' => Pages\EditDistribusi::route('/{record}/edit'),
         ];

@@ -6,7 +6,7 @@ use App\Filament\Resources\ProgramBantuanResource;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
 
-class ListProgramBantuans extends ListRecords
+class ListProgramBantuan extends ListRecords
 {
     protected static string $resource = ProgramBantuanResource::class;
 

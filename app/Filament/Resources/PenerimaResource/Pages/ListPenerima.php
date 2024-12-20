@@ -6,7 +6,7 @@ use App\Filament\Resources\PenerimaResource;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
 
-class ListPenerimas extends ListRecords
+class ListPenerima extends ListRecords
 {
     protected static string $resource = PenerimaResource::class;
 

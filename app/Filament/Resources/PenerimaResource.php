@@ -3,21 +3,22 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\PenerimaResource\Pages;
-use App\Filament\Resources\PenerimaResource\RelationManagers;
 use App\Models\Penerima;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class PenerimaResource extends Resource
 {
     protected static ?string $model = Penerima::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-user';
+
+    // Mengatasi pluralisasi otomatis
+    protected static ?string $pluralModelLabel = 'Penerima';
+    protected static ?string $navigationLabel = 'Penerima';
 
     public static function form(Form $form): Form
     {
@@ -82,7 +83,7 @@ class PenerimaResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListPenerimas::route('/'),
+            'index' => Pages\ListPenerima::route('/'),
             'create' => Pages\CreatePenerima::route('/create'),
             'edit' => Pages\EditPenerima::route('/{record}/edit'),
         ];

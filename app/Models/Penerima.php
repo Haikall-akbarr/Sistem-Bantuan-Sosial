@@ -14,9 +14,9 @@ class Penerima extends Model
 
 
     public function distribusi()
-{
+    {
     return $this->hasMany(Distribusi::class);
-}
+    }
 
 }
 

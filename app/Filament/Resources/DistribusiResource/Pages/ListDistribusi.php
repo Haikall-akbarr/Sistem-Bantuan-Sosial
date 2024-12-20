@@ -6,7 +6,7 @@ use App\Filament\Resources\DistribusiResource;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
 
-class ListDistribusis extends ListRecords
+class ListDistribusi extends ListRecords
 {
     protected static string $resource = DistribusiResource::class;
 

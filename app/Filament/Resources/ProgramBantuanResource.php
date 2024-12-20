@@ -3,21 +3,22 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\ProgramBantuanResource\Pages;
-use App\Filament\Resources\ProgramBantuanResource\RelationManagers;
 use App\Models\ProgramBantuan;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class ProgramBantuanResource extends Resource
 {
     protected static ?string $model = ProgramBantuan::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-briefcase';
+
+    // Mengatasi pluralisasi otomatis
+    protected static ?string $pluralModelLabel = 'Program Bantuan';
+    protected static ?string $navigationLabel = 'Program Bantuan';
 
     public static function form(Form $form): Form
     {
@@ -26,10 +27,9 @@ class ProgramBantuanResource extends Resource
                 ->label('Nama Program')
                 ->required()
                 ->maxLength(255),
-            Forms\Components\Textarea::make('deskripsi')
+            Forms\Components\TextInput::make('deskripsi')
                 ->label('Deskripsi')
-                ->nullable()
-                ->maxLength(500),
+                ->maxLength(255),
         ]);
     }
 
@@ -41,17 +41,12 @@ class ProgramBantuanResource extends Resource
                     ->label('Nama Program')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('deskripsi')
-                    ->label('Deskripsi')
-                    ->limit(50),
+                    ->label('Deskripsi'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->label('Tanggal Dibuat')
                     ->dateTime('d/m/Y'),
             ])
-            ->filters([
-                Tables\Filters\Filter::make('recent')
-                    ->label('Program Terbaru')
-                    ->query(fn ($query) => $query->orderBy('created_at', 'desc')),
-            ])
+            ->filters([])
             ->actions([
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
@@ -64,7 +59,7 @@ class ProgramBantuanResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListProgramBantuans::route('/'),
+            'index' => Pages\ListProgramBantuan::route('/'),
             'create' => Pages\CreateProgramBantuan::route('/create'),
             'edit' => Pages\EditProgramBantuan::route('/{record}/edit'),
         ];

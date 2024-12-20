@@ -13,9 +13,9 @@ class ProgramBantuan extends Model
     protected $fillable = ['nama_program', 'deskripsi'];
 
     public function distribusi()
-{
+    {
     return $this->hasMany(Distribusi::class);
-}
+    }
 
 }
 
